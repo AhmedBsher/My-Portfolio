@@ -115,6 +115,7 @@ section{
     font-size: 2.2em;
     font-weight: 800;
     margin-bottom: 30px;
+    cursor: default;
 }
 
 .content {
@@ -127,7 +128,7 @@ section{
 .card {
     background-color: white;
     width: 21.25em;
-    box-shadow: 0 5px 35px rgba(1 1 1 / 25%);
+    box-shadow: 0 5px 35px rgba(255, 255, 255, 0.479);
     border-radius: 10px;
     padding: 35px;
     margin: 25px;
@@ -239,6 +240,7 @@ section{
 .footer-title {
     font-size: 1.3em;
     font-weight: 600;
+    cursor: default;
 }
 
 .footer-title span {
@@ -314,4 +316,13 @@ section{
 
 .info a {
     color: black;
+}
+
+
+div {
+    cursor: default;
+}
+
+span {
+    cursor: default;
 }
