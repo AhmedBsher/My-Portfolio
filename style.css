@@ -271,7 +271,7 @@ section{
     z-index: 99;
     border: none;
     outline: none;
-    background-color: rgb(1, 66, 63);
+    background-color: rgb(0, 31, 29);
     color: white;
     cursor: pointer;
     padding: 15px;
@@ -282,7 +282,7 @@ section{
   }
 
   #back-to-top:hover {
-    background-color: rgb(0, 31, 29);
+    background-color: rgb(1, 66, 63);
     transform: scale(1.1);
   }
 
