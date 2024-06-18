@@ -1,6 +1,6 @@
 # AhmedBsher Personal Website
 
-This is the source code for AhmedBsher's personal website. The website includes sections for services, soft skills, and contact information, as well as links to social media profiles.
+This is the source code for AhmedBsher's personal website. The website includes sections for info, services, soft skills, and contact information, as well as links to social media profiles.
 
 ## Files
 
@@ -12,7 +12,10 @@ This is the source code for AhmedBsher's personal website. The website includes 
 - Contains the logo and navigation links to different sections of the website.
 
 ### Main Section
-- Introduces AhmedBsher with a brief welcome message and social media icons.
+- Introduces me with a brief welcome message and social media icons.
+
+### Info
+- Introduces some information about me.
 
 ### Services
 - Lists the services offered by me, including web development and photo editing.
