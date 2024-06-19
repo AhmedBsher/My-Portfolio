@@ -149,7 +149,7 @@ section{
     transform: scale(1.1);
 }
 
-.icon {
+.card .icon {
     color: rgb(1, 66, 63);
     font-size: 6.5em;
     text-align: center;
@@ -281,7 +281,7 @@ section{
     transition: 0.4s ease;
   }
 
-  #back-to-top:hover {
+#back-to-top:hover {
     background-color: rgb(1, 66, 63);
     transform: scale(1.1);
   }
