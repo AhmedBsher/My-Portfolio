@@ -20,6 +20,9 @@ This is the source code for AhmedBsher's personal website. The website includes 
 ### Services
 - Lists the services offered by me, including web development and photo editing.
 
+### Projects
+- Lists the projects which i made.
+
 ### Soft Skills
 - Highlights the soft skills of me using a circular layout.
 
