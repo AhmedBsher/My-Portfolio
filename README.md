@@ -7,6 +7,7 @@ This is the source code for AhmedBsher's personal website. The website includes 
 - `index.html`: The main HTML file containing the structure of the website.
 - `style.css`: The CSS file for styling the website.
 - `images/`: A folder containing images used on the website, such as the background image.
+- `script.js` The JavaScript file
 
 ### Header
 - Contains the logo and navigation links to different sections of the website.
@@ -19,6 +20,12 @@ This is the source code for AhmedBsher's personal website. The website includes 
 
 ### Services
 - Lists the services offered by me, including web development and photo editing.
+
+### Projects
+- Lists the projects which i made.
+
+### Abilities
+- The abilities and skills i have
 
 ### Soft Skills
 - Highlights the soft skills of me using a circular layout.
