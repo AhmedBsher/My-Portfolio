@@ -74,8 +74,9 @@ hr{
 }
 
 .main h2{
+    display: inline-block;
     color: white;
-    font-size: 1.4em;
+    font-size: 1.6em;
     font-weight: 500;
 }
 
@@ -93,7 +94,7 @@ hr{
     font-weight: 700;
     letter-spacing: 1px;
     margin-top: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 
 .social-icons a {
