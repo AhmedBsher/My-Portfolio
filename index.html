@@ -13,9 +13,23 @@
 </head>
 
 <body>
+    <!-- Page Loader -->
+    <div id="loader">
+        <div class="loader-content">
+            <i class="fa-solid fa-gear loader-gear"></i>
+            <h2>Loading<span>...</span></h2>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
 
     <header>
-        <a href="#" class="logo">AHMED</a>
+        <div class="logo-container">
+            <i class="fa-solid fa-gear logo-gear"></i>
+            <a href="#" class="logo">AHMED<span>.</span></a>
+        </div>
         <div class="menu-btn">
             <i class="fas fa-bars"></i>
         </div>
@@ -53,8 +67,8 @@
     </section>
 
     <section class="info reveal" id="info">
-        <h2 class="title">Info</h2>
-        <hr>
+        <h2 class="title reveal">Info</h2>
+        <hr class="reveal">
         <p><i>
             I am currently a Bachelor's student in Mechanical Engineering at Alexandria University,
             passionate about learning and acquiring new skills that align with technological advancements and market demands.
@@ -67,8 +81,8 @@
     </section>
 
     <section class="cards" id="services">
-        <h2 class="title">Services</h2>
-        <hr>
+        <h2 class="title reveal">Services</h2>
+        <hr class="reveal">
         <div class="content reveal-container">
 
             <div class="card reveal">
@@ -155,8 +169,8 @@
     </section>
 
     <section class="projects" id="projects">
-        <h2 class="title">Projects</h2>
-        <hr>
+        <h2 class="title reveal">Projects</h2>
+        <hr class="reveal">
         <div class="content reveal-container">
 
             <div class="project-card reveal">
@@ -190,8 +204,8 @@
     </section>
 
     <section class="abilities reveal" id="abilities">
-        <h2 class="title">Technical Skills</h2>
-        <hr>
+        <h2 class="title reveal">Technical Skills</h2>
+        <hr class="reveal">
         <div class="skills-container">
             <div class="swiper skills-slider">
                 <div class="swiper-wrapper">
@@ -299,7 +313,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> 
                 <!-- Navigation -->
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
@@ -311,7 +325,7 @@
 
     <section class="soft-skills reveal" id="soft-skills">
         <div class="circle-container">
-            <div class="center">Soft Skills</div>
+            <div class="center reveal">Soft Skills</div>
             <div class="item" style="--i:0;">Stress Management</div>
             <div class="item" style="--i:1;">Communication Skills</div>
             <div class="item" style="--i:2;">Interpersonal Skills</div>
@@ -324,35 +338,66 @@
     </section>
 
     <section class="contact-cards" id="contact">
-        <h2 class="title">Let's work together</h2>
-        <hr>
-        <div class="content reveal-container">
-
-            <div class="card reveal">
-                <div class="icon">
-                    <i class="fa-solid fa-phone"></i>
+        <h2 class="title reveal">Get In Touch</h2>
+        <hr class="reveal">
+        
+        <div class="contact-container reveal-container">
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <div class="card glass-card reveal">
+                    <div class="icon animated-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div class="info">
+                        <h3>Phone</h3>
+                        <a href="tel:+201024015110">+201024015110</a>
+                    </div>
                 </div>
-                
-                <div class="info">
-                    <h3>Phone</h3>
-                    <a href="tel:+201024015110">
-                        +201024015110
-                      </a> 
+                <div class="card glass-card reveal">
+                    <div class="icon animated-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <div class="info">
+                        <h3>Email</h3>
+                        <a href="mailto:ahmedbsher999@gmail.com">ahmedbsher999@gmail.com</a>
+                    </div>
+                </div>
+                <div class="card glass-card reveal">
+                    <div class="icon animated-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="info">
+                        <h3>Location</h3>
+                        <a href="#">Alexandria, Egypt</a>
+                    </div>
+                </div>
+                <!-- Social Connections -->
+                <div class="social-connect reveal">
+                    <h3>Connect with me</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/ahmed.bsher.33046" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://wa.me/qr/QNMYGNUDKIDAK1" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="https://www.instagram.com/iahmedbsher/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://twitter.com/ahmedbsher_" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/in/ahmed-bsher-921242232/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://github.com/AhmedBsher" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+                    </div>
                 </div>
             </div>
 
-            <div class="card reveal">
-                <div class="icon">
-                    <i class="fa-solid fa-envelope"></i>
+            <!-- Contact Form -->
+            <form action="https://formspree.io/f/mbdwedye" method="POST" class="contact-form reveal">
+                <div class="input-container">
+                    <input type="text" id="name" name="name" required>
+                    <label for="name">Your Name</label>
                 </div>
-                
-                <div class="info">
-                    <h3>Email</h3>
-                    <a href="mailto:ahmedbsher999@gmail.com">
-                        ahmedbsher999@gmail.com
-                    </a>
+                <div class="input-container">
+                    <input type="email" id="email" name="email" required>
+                    <label for="email">Your Email</label>
                 </div>
-            </div>
+                <div class="input-container">
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                    <label for="message">Your Message</label>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <span>Send Message</span>
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </form>
         </div>
     </section>
 

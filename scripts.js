@@ -1,20 +1,40 @@
+// Page Loader Logic - MUST BE AT THE TOP to ensure it runs immediately
+const hideLoader = () => {
+    const loader = document.getElementById('loader');
+    if (loader) {
+        loader.style.opacity = '0';
+        setTimeout(() => {
+            loader.style.visibility = 'hidden';
+            loader.style.display = 'none';
+        }, 800);
+    }
+};
+
+// Hide loader when page is loaded
+window.addEventListener('load', hideLoader);
+// Fallback: Hide loader after 3 seconds anyway
+setTimeout(hideLoader, 3000);
+
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
   const backToTopButton = document.getElementById("back-to-top");
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    backToTopButton.style.display = "block";
-  } else {
-    backToTopButton.style.display = "none";
+  if (backToTopButton) {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      backToTopButton.style.display = "block";
+    } else {
+      backToTopButton.style.display = "none";
+    }
   }
 }
 
-document.getElementById('back-to-top').addEventListener('click', function(event) {
-  event.preventDefault();
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-});
-
+const backToTop = document.getElementById('back-to-top');
+if (backToTop) {
+    backToTop.addEventListener('click', function(event) {
+        event.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
 
 // TextScramble
 class TextScramble {
@@ -71,97 +91,182 @@ class TextScramble {
   }
 }
 
-// Text to scramb
 const phrases = [
   'Mechanical Engineering',
-  'Front-Fnd-Web Developer',
+  'Front-End Web Developer',
   'Graphic Designer',
 ]
 
-const el = document.querySelector('.text')
-const fx = new TextScramble(el)
-
-let counter = 0
-const next = () => {
-  fx.setText(phrases[counter]).then(() => {
-    setTimeout(next, 800)
-  })
-  counter = (counter + 1) % phrases.length
+const scrambleEl = document.querySelector('.text')
+if (scrambleEl) {
+    const fx = new TextScramble(scrambleEl)
+    let counter = 0
+    const next = () => {
+      fx.setText(phrases[counter]).then(() => {
+        setTimeout(next, 800)
+      })
+      counter = (counter + 1) % phrases.length
+    }
+    next()
 }
 
-next()
-
 // Initialize Skills Swiper
-const skillsSwiper = new Swiper('.skills-slider', {
-    slidesPerView: 1,
-    spaceBetween: 30,
-    loop: true,
-    autoplay: {
-        delay: 2000,
-        disableOnInteraction: false,
-    },
-    pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-    },
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
-    breakpoints: {
-        640: {
-            slidesPerView: 1,
+if (document.querySelector('.skills-slider')) {
+    const skillsSwiper = new Swiper('.skills-slider', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        autoplay: {
+            delay: 2000,
+            disableOnInteraction: false,
         },
-        768: {
-            slidesPerView: 2,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
         },
-        1024: {
-            slidesPerView: 3,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
         },
-    }
-});
+        breakpoints: {
+            640: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+        }
+    });
+}
 
 // Scroll Reveal Logic
 const revealElements = document.querySelectorAll('.reveal');
-
-const revealObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-            // If it's a container, reveal children with delay
-            if (entry.target.classList.contains('reveal-container')) {
-                const children = entry.target.querySelectorAll('.reveal');
-                children.forEach((child, index) => {
-                    child.style.transitionDelay = `${index * 0.15}s`;
-                    child.classList.add('active');
-                });
+if (revealElements.length > 0) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                if (entry.target.classList.contains('reveal-container')) {
+                    const children = entry.target.querySelectorAll('.reveal');
+                    children.forEach((child, index) => {
+                        child.style.transitionDelay = `${index * 0.15}s`;
+                        child.classList.add('active');
+                    });
+                }
+                observer.unobserve(entry.target);
             }
-            observer.unobserve(entry.target); // Trigger only once
-        }
-    });
-}, {
-    threshold: 0.15 // Trigger when 15% of the element is visible
-});
-
-revealElements.forEach(el => revealObserver.observe(el));
+        });
+    }, { threshold: 0.15 });
+    revealElements.forEach(el => revealObserver.observe(el));
+}
 
 // Mobile Menu Toggle
 const menuBtn = document.querySelector('.menu-btn');
 const navigation = document.querySelector('.navigation');
 const navLinks = document.querySelectorAll('.navigation a');
 
-menuBtn.addEventListener('click', () => {
-    navigation.classList.toggle('active');
-    menuBtn.querySelector('i').classList.toggle('fa-bars');
-    menuBtn.querySelector('i').classList.toggle('fa-xmark');
-});
+if (menuBtn && navigation) {
+    menuBtn.addEventListener('click', () => {
+        navigation.classList.toggle('active');
+        const icon = menuBtn.querySelector('i');
+        if (icon) {
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
+        }
+    });
 
-// Close menu when a link is clicked
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        navigation.classList.remove('active');
-        menuBtn.querySelector('i').classList.add('fa-bars');
-        menuBtn.querySelector('i').classList.remove('fa-xmark');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navigation.classList.remove('active');
+            const icon = menuBtn.querySelector('i');
+            if (icon) {
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-xmark');
+            }
+        });
+    });
+}
+
+// Custom Cursor Logic
+const cursor = document.querySelector('.cursor');
+const follower = document.querySelector('.cursor-follower');
+const interactiveElements = document.querySelectorAll('a, button, .card, .skill-card, .menu-btn');
+
+if (cursor && follower) {
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+        follower.style.left = (e.clientX - 15) + 'px';
+        follower.style.top = (e.clientY - 15) + 'px';
+    });
+
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => follower.classList.add('cursor-active'));
+        el.addEventListener('mouseleave', () => follower.classList.remove('cursor-active'));
+    });
+}
+
+// Handle Contact Form Submission
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const submitBtn = contactForm.querySelector('.submit-btn');
+        const originalBtnText = submitBtn.innerHTML;
+        
+        submitBtn.innerHTML = '<span>Sending...</span><i class="fa-solid fa-spinner fa-spin"></i>';
+        submitBtn.style.opacity = '0.7';
+        submitBtn.style.pointerEvents = 'none';
+
+        try {
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: new FormData(contactForm),
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                submitBtn.innerHTML = '<span>Message Sent!</span><i class="fa-solid fa-check"></i>';
+                submitBtn.style.background = '#28a745';
+                submitBtn.style.opacity = '1';
+                contactForm.reset();
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalBtnText;
+                    submitBtn.style.background = '';
+                    submitBtn.style.opacity = '';
+                    submitBtn.style.pointerEvents = 'auto';
+                }, 3000);
+            } else {
+                throw new Error();
+            }
+        } catch (error) {
+            submitBtn.innerHTML = '<span>Oops! Try again.</span><i class="fa-solid fa-circle-exclamation"></i>';
+            submitBtn.style.background = '#dc3545';
+            submitBtn.style.opacity = '1';
+            setTimeout(() => {
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.style.background = '';
+                submitBtn.style.opacity = '';
+                submitBtn.style.pointerEvents = 'auto';
+            }, 3000);
+        }
+    });
+}
+
+// Scroll Spy Logic
+const sections = document.querySelectorAll('section');
+const links = document.querySelectorAll('.navigation a');
+
+window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (window.scrollY >= (sectionTop - 200)) {
+            current = section.getAttribute('id');
+        }
+    });
+
+    links.forEach(link => {
+        link.classList.remove('nav-active');
+        if (current && link.getAttribute('href').includes(current)) {
+            link.classList.add('nav-active');
+        }
     });
 });
-
