@@ -90,3 +90,78 @@ const next = () => {
 }
 
 next()
+
+// Initialize Skills Swiper
+const skillsSwiper = new Swiper('.skills-slider', {
+    slidesPerView: 1,
+    spaceBetween: 30,
+    loop: true,
+    autoplay: {
+        delay: 2000,
+        disableOnInteraction: false,
+    },
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+    },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    breakpoints: {
+        640: {
+            slidesPerView: 1,
+        },
+        768: {
+            slidesPerView: 2,
+        },
+        1024: {
+            slidesPerView: 3,
+        },
+    }
+});
+
+// Scroll Reveal Logic
+const revealElements = document.querySelectorAll('.reveal');
+
+const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            // If it's a container, reveal children with delay
+            if (entry.target.classList.contains('reveal-container')) {
+                const children = entry.target.querySelectorAll('.reveal');
+                children.forEach((child, index) => {
+                    child.style.transitionDelay = `${index * 0.15}s`;
+                    child.classList.add('active');
+                });
+            }
+            observer.unobserve(entry.target); // Trigger only once
+        }
+    });
+}, {
+    threshold: 0.15 // Trigger when 15% of the element is visible
+});
+
+revealElements.forEach(el => revealObserver.observe(el));
+
+// Mobile Menu Toggle
+const menuBtn = document.querySelector('.menu-btn');
+const navigation = document.querySelector('.navigation');
+const navLinks = document.querySelectorAll('.navigation a');
+
+menuBtn.addEventListener('click', () => {
+    navigation.classList.toggle('active');
+    menuBtn.querySelector('i').classList.toggle('fa-bars');
+    menuBtn.querySelector('i').classList.toggle('fa-xmark');
+});
+
+// Close menu when a link is clicked
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navigation.classList.remove('active');
+        menuBtn.querySelector('i').classList.add('fa-bars');
+        menuBtn.querySelector('i').classList.remove('fa-xmark');
+    });
+});
+
