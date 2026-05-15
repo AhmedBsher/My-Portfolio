@@ -187,7 +187,7 @@ if (menuBtn && navigation) {
 // Custom Cursor Logic
 const cursor = document.querySelector('.cursor');
 const follower = document.querySelector('.cursor-follower');
-const interactiveElements = document.querySelectorAll('a, button, .card, .skill-card, .menu-btn');
+const interactiveElements = document.querySelectorAll('a, button, .card, .skill-card, .menu-btn, .close-modal, .modal-btn, .more-details');
 
 if (cursor && follower) {
     document.addEventListener('mousemove', (e) => {
@@ -330,4 +330,65 @@ if (canvas) {
 
     init();
     animate();
+}
+
+// Project Modal Logic
+const modal = document.getElementById('project-modal');
+const projectCards = document.querySelectorAll('.project-card');
+const closeModal = document.querySelector('.close-modal');
+const modalOverlay = document.querySelector('.modal-overlay');
+
+if (modal && projectCards.length > 0) {
+    projectCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const data = card.dataset;
+            
+            // Populate Modal Content
+            document.getElementById('modal-title').innerText = data.title;
+            document.getElementById('modal-desc').innerText = data.desc;
+            document.getElementById('modal-goal').innerText = data.goal;
+            
+            // Populate Tech Stack Badges
+            const stackContainer = document.getElementById('modal-stack');
+            stackContainer.innerHTML = '';
+            data.stack.split(',').forEach(tech => {
+                const span = document.createElement('span');
+                span.className = 'tech-tag';
+                span.innerText = tech.trim();
+                stackContainer.appendChild(span);
+            });
+
+            // Populate Key Features
+            const featuresList = document.getElementById('modal-features');
+            featuresList.innerHTML = '';
+            data.features.split(',').forEach(feature => {
+                const li = document.createElement('li');
+                li.innerText = feature.trim();
+                featuresList.appendChild(li);
+            });
+
+            // Update Buttons
+            document.getElementById('modal-demo').href = data.demo;
+            document.getElementById('modal-github').href = data.github;
+
+            // Show Modal
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        });
+    });
+
+    const closeProjectModal = () => {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    };
+
+    if (closeModal) closeModal.addEventListener('click', closeProjectModal);
+    if (modalOverlay) modalOverlay.addEventListener('click', closeProjectModal);
+
+    // Close on Esc key
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeProjectModal();
+        }
+    });
 }
