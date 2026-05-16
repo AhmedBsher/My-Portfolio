@@ -418,7 +418,7 @@ header {
     position: relative;
 }
 
-.experience .title { color: var(--black); }
+.experience .title { color: var(--primary-color); }
 
 .timeline {
     position: relative;
