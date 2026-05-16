@@ -35,15 +35,17 @@
         </div>
         <nav class="navigation">
             <a href="#info">Info</a>
+            <a href="#experience">Journey</a>
             <a href="#services">Services</a>
             <a href="#projects">Projects</a>
             <a href="#abilities">Abilities</a>
             <a href="#soft-skills">Soft Skills</a>
             <a href="#contact">Contact</a>  
         </nav>
+        <div class="scroll-progress"></div>
     </header>
 
-
+    <!----------------------------- Main ------------------------------>
     <section class="main">
         <canvas id="hero-particles"></canvas>
         <div>
@@ -67,6 +69,7 @@
         </div>
     </section>
 
+    <!----------------------------- Info ------------------------------>
     <section class="info reveal" id="info">
         <h2 class="title reveal">Info</h2>
         <hr class="reveal">
@@ -81,6 +84,67 @@
         </i></p>
     </section>
 
+    <!----------------------------- Experience ------------------------------>
+    <section class="experience" id="experience">
+        <h2 class="title reveal">My Journey</h2>
+        <hr class="reveal">
+        
+        <div class="timeline">
+            <!-- Timeline Item 1 -->
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2020 - 2023</div>
+                <div class="timeline-content glass-card">
+                    <h3>High School Foundation</h3>
+                    <p>My journey began with a strong focus on mathematics and physics during high school. This period was crucial in shaping my analytical thinking and problem-solving mindset, laying the essential groundwork for my future pursuit of a career in engineering.</p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 2 -->
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2023 - Present</div>
+                <div class="timeline-content glass-card">
+                    <h3>Mechanical Engineering | Alexandria University</h3>
+                    <p>Currently pursuing a Bachelor's degree in Mechanical Engineering at Alexandria University. I dive deep into the world of Thermodynamics, Fluid Mechanics, Mechanical Design and ICEs. This academic path enhances my ability to handle complex systems and precision-driven projects.</p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 3 -->
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2021 - Present</div>
+                <div class="timeline-content glass-card">
+                    <h3>Front-End Web Development</h3>
+                    <p>Driven by a passion for technology, I self-taught web development to bridge the gap between engineering logic and digital creation. I specialize in building responsive, user-centric interfaces using HTML, CSS, and JavaScript, turning complex ideas into smooth digital experiences.</p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 4 -->
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2019 - Present</div>
+                <div class="timeline-dot pulse"></div>
+                <div class="timeline-content glass-card">
+                    <h3>Graphic & Visual Design</h3>
+                    <p>To complement my technical skills, I mastered graphic design tools like Photoshop. This allows me to craft compelling visuals and maintain a high standard of aesthetics across both mechanical blueprints and digital web platforms.</p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 5 -->
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">Future</div>
+                <div class="timeline-dot pulse"></div>
+                <div class="timeline-content glass-card">
+                    <h3>The Next Chapter</h3>
+                    <p>Continuously seeking challenges that bridge the gap between mechanical hardware and intelligent software solutions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!----------------------------- Services ------------------------------>
     <section class="cards" id="services">
         <h2 class="title reveal">Services</h2>
         <hr class="reveal">
@@ -91,7 +155,7 @@
                     <i class="fa-solid fa-code"></i>
                 </div>
                 
-                <div class="info">
+                <div class="subinfo">
                     <h3>Web Development</h3>
                     <p>I can build websites using HTML, CSS and JavaScript.</p>
                 </div>
@@ -102,7 +166,7 @@
                     <i class="fa-solid fa-minimize"></i>
                 </div>
                 
-                <div class="info">
+                <div class="subinfo">
                     <h3>Responsive Design</h3>
                     <p>Your website will be 100% responsive for all devices: Tablets and Smart phones.</p>
                 </div>
@@ -113,7 +177,7 @@
                     <i class="fa-brands fa-creative-commons-sa"></i>
                 </div>
                 
-                <div class="info">
+                <div class="subinfo">
                     <h3>Creative Design</h3>
                     <p>I can edit your current website by adding a new content to make it much better.</p>
                 </div>
@@ -124,7 +188,7 @@
                     <i class="fa-solid fa-wand-magic-sparkles"></i>
                 </div>
                 
-                <div class="info">
+                <div class="subinfo">
                     <h3>Graphic Designer</h3>
                     <p>Creative graphic designer with a passion for visual storytelling and a keen eye for detail.</p>
                 </div>
@@ -137,7 +201,7 @@
                     </svg>
                 </div>
                 
-                <div class="info">
+                <div class="subinfo">
                     <h3>MATLAB Developer</h3>
                     <p>Aspiring mechanical engineer leveraging MATLAB for numerical analysis.</p>
                 </div>
@@ -148,7 +212,7 @@
                     <img width="120" height="120" src="https://img.icons8.com/external-others-pike-picture/100/external-autocad-modelling-others-pike-picture.png" alt="external-autocad-modelling-others-pike-picture"/>
                 </div>
                 
-                <div class="info">
+                <div class="subinfo">
                     <h3>AutoCAD Mechanical Designer</h3>
                     <p>I am proficient in AutoCAD for advanced mechanical design.</p>
                 </div>
@@ -161,7 +225,7 @@
                     </svg>
                 </div>
                 
-                <div class="info">
+                <div class="subinfo">
                     <h3>SolidWorks Mechanical Designer</h3>
                     <p>I am skilled in SolidWorks for mechanical design.</p>
                 </div>
@@ -169,12 +233,23 @@
         </div>
     </section>
 
+    <!----------------------------- Projects ------------------------------>
     <section class="projects" id="projects">
         <h2 class="title reveal">Projects</h2>
         <hr class="reveal">
+        
+        <!-- Project Filter -->
+        <div class="project-filter reveal">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="web">Web Dev</button>
+            <button class="filter-btn" data-filter="mechanical">Mechanical Eng</button>
+        </div>
+
         <div class="content reveal-container">
 
+            <!--personal finance tracker-->
             <div class="project-card reveal" 
+                 data-category="web"
                  data-title="Personal Finance Tracker" 
                  data-desc="This project was aimed at enchnace my frontend skills. It's a comprehensive web application designed to help individuals track their income, expenses, and savings goals in real-time."
                  data-stack="HTML, CSS, JavaScript, LocalStorage"
@@ -194,7 +269,9 @@
                 </div>
             </div>
 
+            <!--To-Do-List-->
             <div class="project-card reveal"
+                 data-category="web"
                  data-title="To-Do-List"
                  data-desc="This project was aimed at enchnace my frontend skills. It's an interactive task management application that helps users organize their daily routines and boost productivity."
                  data-stack="HTML, CSS, JavaScript"
@@ -214,8 +291,9 @@
                 </div>
             </div>
 
-            <!-- New Project Placeholder 1 -->
+            <!--Saybolt Viscometer Project-->
             <div class="project-card reveal"
+                 data-category="mechanical"
                  data-title="Saybolt Viscometer Project"
                  data-desc="It's a semi-automated take on the classical Saybolt Viscometer, designed to measure the kinematic viscosity of Newtonian fluids. It precisely calculates how long it takes for a fixed volume of fluid to flow through a standard orifice, then uses that time to determine viscosity. I aimed to bring this process into the digital age with live measurements and automated calculations."
                  data-stack="ESP32 Microcontroller, SolidWorks, MATLAB, Python, Hardware Implementation"
@@ -235,8 +313,9 @@
                 </div>
             </div>
 
-            <!-- New Project Placeholder 2 -->
+            <!--Truck Tailgate Motion 4-Bar Mechanism Project-->
             <div class="project-card reveal"
+                 data-category="mechanical"
                  data-title="Truck Tailgate Motion 4-Bar Mechanism"
                  data-desc="This project involves the design, analysis, and physical prototyping of a 4-bar linkage mechanism intended for a truck tailgate motion system. The project utilizes SolidWorks for CAD modeling, analytical calculations for kinematic analysis, and MATLAB for computational simulation and data processing."
                  data-stack="SolidWorks, MATLAB, Analytical Calculations, CAD Modeling"
@@ -256,8 +335,9 @@
                 </div>
             </div>
 
-            <!-- New Project Placeholder 3 -->
+            <!--Heat Transfer Project-->
             <div class="project-card reveal"
+                 data-category="mechanical"
                  data-title="Heat Transfer Project"
                  data-desc="This project consists of two main heat conduction problems (Q1 & Q2), solved using MATLAB."
                  data-stack="MATLAB, Heat Transfer, Data Visualization"
@@ -277,8 +357,9 @@
                 </div>
             </div>
 
-            <!-- New Project Placeholder 4 -->
+            <!--Future Innovation Project-->
             <div class="project-card reveal"
+                 data-category="general"
                  data-title="Future Innovation Project"
                  data-desc="This project space is reserved for my next breakthrough in engineering or web development."
                  data-stack="Coming Soon"
@@ -300,7 +381,8 @@
 
         </div>
     </section>
-
+    
+    <!----------------------------- Skills ------------------------------>
     <section class="abilities reveal" id="abilities">
         <h2 class="title reveal">Technical Skills</h2>
         <hr class="reveal">
@@ -375,7 +457,7 @@
                     <!-- Photoshop -->
                     <div class="swiper-slide">
                         <div class="skill-card">
-                            <div class="skill-icon"><i class="fa-solid fa-bezier-curve"></i></div>
+                            <div class="skill-icon"><i class="fa-solid fa-image-portrait"></i></div>
                             <h3>Photoshop</h3>
                             <div class="skill-info">
                                 <span class="percentage">85%</span>
@@ -421,6 +503,7 @@
         </div>
     </section>
 
+    <!----------------------------- Soft Skills ------------------------------>
     <section class="soft-skills reveal" id="soft-skills">
         <div class="circle-container">
             <div class="center reveal">Soft Skills</div>
@@ -435,6 +518,7 @@
         </div>
     </section>
 
+    <!----------------------------- Contact ------------------------------>
     <section class="contact-cards" id="contact">
         <h2 class="title reveal">Get In Touch</h2>
         <hr class="reveal">
@@ -501,7 +585,7 @@
 
     <a href="#" id="back-to-top" title="Back to Top">↑</a>
 
-
+    <!----------------------------- Footer ------------------------------>
     <footer class="footer">
     <p class="footer-title">Copyrights @ <span>Ahmed Bsher</span></p>
         <div class="social-icons-">
@@ -514,7 +598,7 @@
         </div>
     </footer>
       
-    <!-- Project Modal -->
+    <!----------------------------- Project Modal ------------------------------>
     <div id="project-modal" class="modal">
         <div class="modal-overlay"></div>
         <div class="modal-content">

@@ -252,7 +252,6 @@ if (contactForm) {
 
 // Scroll Spy Logic
 const sections = document.querySelectorAll('section');
-const links = document.querySelectorAll('.navigation a');
 
 window.addEventListener('scroll', () => {
     let current = '';
@@ -263,7 +262,7 @@ window.addEventListener('scroll', () => {
         }
     });
 
-    links.forEach(link => {
+    navLinks.forEach(link => {
         link.classList.remove('nav-active');
         if (current && link.getAttribute('href').includes(current)) {
             link.classList.add('nav-active');
@@ -392,3 +391,69 @@ if (modal && projectCards.length > 0) {
         }
     });
 }
+
+// Project Filtering Logic
+const filterButtons = document.querySelectorAll('.filter-btn');
+const projects = document.querySelectorAll('.project-card');
+
+if (filterButtons.length > 0 && projects.length > 0) {
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Update active button
+            filterButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filter = btn.dataset.filter;
+
+            projects.forEach(project => {
+                // Add a small delay for smoother transition
+                project.style.opacity = '0';
+                project.style.transform = 'scale(0.8)';
+                
+                setTimeout(() => {
+                    if (filter === 'all' || project.dataset.category === filter) {
+                        project.style.display = 'block';
+                        setTimeout(() => {
+                            project.style.opacity = '1';
+                            project.style.transform = 'scale(1)';
+                        }, 50);
+                    } else {
+                        project.style.display = 'none';
+                    }
+                }, 300);
+            });
+        });
+    });
+}
+
+// Scroll Progress Bar Logic
+const scrollProgress = document.querySelector('.scroll-progress');
+window.addEventListener('scroll', () => {
+    const windowScroll = document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (windowScroll / height) * 100;
+    if(scrollProgress) {
+        scrollProgress.style.width = scrolled + '%';
+    }
+});
+
+// Magnetic Navigation Links
+navLinks.forEach(link => {
+    link.addEventListener('mousemove', (e) => {
+        const rect = link.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        
+        // Intensity of the pull
+        link.style.transition = 'none';
+        link.style.setProperty('--mag-x', `${x * 0.4}px`);
+        link.style.setProperty('--mag-y', `${y * 0.4}px`);
+    });
+
+    link.addEventListener('mouseleave', () => {
+        link.style.transition = 'transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)';
+        link.style.setProperty('--mag-x', '0px');
+        link.style.setProperty('--mag-y', '0px');
+    });
+});
+
