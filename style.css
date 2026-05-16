@@ -343,7 +343,7 @@ header {
     text-decoration: none;
     font-size: .9em;
     font-weight: 700;
-    margin-left: 20px;
+    margin-left: 10px;
     text-transform: uppercase;
     display: inline-block;
     position: relative; /* Added for underline effect */
@@ -357,7 +357,7 @@ header {
 }
 
 .navigation a i {
-    margin-right: 10px;
+    margin-right: 5px;
     font-size: 0.9em;
     opacity: 0.8;
 }
@@ -510,7 +510,7 @@ header {
 }
 
 #info p {
-    font-size: 1.2em;
+    font-size: 1.25em;
     cursor: default;
     text-align: center;
     font-weight: 500;
@@ -1227,6 +1227,10 @@ header {
     font-size: 1.2em;
     margin-bottom: 20px;
     text-transform: uppercase;
+}
+
+.contact-container .contact-info .info a {
+    cursor: pointer;
 }
 
 .social-links {
