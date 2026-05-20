@@ -471,3 +471,112 @@ navLinks.forEach(link => {
     });
 });
 
+// Soft Skills Dynamic Orbit System
+const orbitItems = document.querySelectorAll('.circle-container .item');
+const orbitCenter = document.querySelector('.circle-container .center');
+const centerTitle = document.querySelector('.center-title');
+const centerDesc = document.querySelector('.center-desc');
+const orbitContainer = document.querySelector('.circle-container');
+
+// Map of descriptions for each soft skill
+const softSkillsData = {
+    'stress management': {
+        title: 'Resilience',
+        desc: 'Thrives under pressure, maintaining clear focus and structural problem-solving in challenging situations.'
+    },
+    'communication skills': {
+        title: 'Communication',
+        desc: 'Articulates complex technical mechanical designs and code structures to non-technical stakeholders.'
+    },
+    'interpersonal skills': {
+        title: 'Collaboration',
+        desc: 'Collaborative team player who values diverse viewpoints and constructive collaboration.'
+    },
+    'public speaking': {
+        title: 'Presentation',
+        desc: 'Confident presenter of project blueprints, university research, and technical developments.'
+    },
+    'leadership': {
+        title: 'Leadership',
+        desc: 'Guiding project groups at university, organizing tasks, and keeping teams motivated and on schedule.'
+    },
+    'conflict management': {
+        title: 'Diplomacy',
+        desc: 'Resolving team disagreements constructively by focusing on mutual goals and objective solutions.'
+    },
+    'decision making': {
+        title: 'Analysis',
+        desc: 'Data-driven decision maker, analyzing options to select the most efficient engineering and code paths.'
+    },
+    'time management': {
+        title: 'Efficiency',
+        desc: 'Balances mechanical engineering academic load with self-taught front-end development milestones.'
+    }
+};
+
+if (orbitContainer && orbitItems.length > 0) {
+    let rotationAngle = 0;
+    let isOrbitHovered = false;
+
+    // Track active hovered item in JS to adjust radius and scale
+    orbitItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            item.classList.add('hovered');
+            
+            // Get text content (lowercase to match key)
+            const textKey = item.textContent.trim().toLowerCase();
+            const data = softSkillsData[textKey];
+            if (data && orbitCenter && centerTitle && centerDesc) {
+                centerTitle.textContent = data.title;
+                centerDesc.textContent = data.desc;
+                orbitCenter.classList.add('active-desc');
+            }
+        });
+
+        item.addEventListener('mouseleave', () => {
+            item.classList.remove('hovered');
+            
+            if (orbitCenter && centerTitle && centerDesc) {
+                centerTitle.textContent = 'Soft Skills';
+                centerDesc.textContent = '';
+                orbitCenter.classList.remove('active-desc');
+            }
+        });
+    });
+
+    orbitContainer.addEventListener('mouseenter', () => {
+        isOrbitHovered = true;
+    });
+
+    orbitContainer.addEventListener('mouseleave', () => {
+        isOrbitHovered = false;
+    });
+
+    // Orbit animation loop
+    function animateOrbit() {
+        if (!isOrbitHovered) {
+            rotationAngle += 0.15; // Smooth rotation speed
+            if (rotationAngle >= 360) rotationAngle = 0;
+        }
+
+        orbitItems.forEach(item => {
+            // Get index custom property
+            const index = parseFloat(item.style.getPropertyValue('--i')) || 0;
+            const baseAngle = index * 45; // 360 / 8 = 45 degrees
+            const currentAngle = baseAngle + rotationAngle;
+            
+            // Adjust radius and scale dynamically if hovered
+            const isHovered = item.classList.contains('hovered');
+            const radius = isHovered ? 210 : 185;
+            const scale = isHovered ? 1.15 : 1.0;
+
+            // Apply transforms: translate out, and then counter-rotate the item text to keep it upright
+            item.style.transform = `rotate(${currentAngle}deg) translate(${radius}px) rotate(${-currentAngle}deg) scale(${scale})`;
+        });
+
+        requestAnimationFrame(animateOrbit);
+    }
+
+    // Initialize initial placements and run loop
+    animateOrbit();
+}
