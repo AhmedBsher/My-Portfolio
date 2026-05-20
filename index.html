@@ -578,18 +578,24 @@
             </div>
 
             <!-- Contact Form -->
-            <form action="https://formspree.io/f/mbdwedye" method="POST" class="contact-form reveal">
+            <form action="https://formspree.io/f/mbdwedye" method="POST" class="contact-form reveal" novalidate>
                 <div class="input-container">
                     <input type="text" id="name" name="name" required>
                     <label for="name">Your Name</label>
+                    <span class="error-message"></span>
+                    <span class="validation-icon"></span>
                 </div>
                 <div class="input-container">
                     <input type="email" id="email" name="email" required>
                     <label for="email">Your Email</label>
+                    <span class="error-message"></span>
+                    <span class="validation-icon"></span>
                 </div>
                 <div class="input-container">
                     <textarea id="message" name="message" rows="5" required></textarea>
                     <label for="message">Your Message</label>
+                    <span class="error-message"></span>
+                    <span class="validation-icon"></span>
                 </div>
                 <button type="submit" class="submit-btn">
                     <span>Send Message</span>

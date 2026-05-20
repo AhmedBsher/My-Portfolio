@@ -220,11 +220,108 @@ if (cursor && follower) {
 // Handle Contact Form Submission
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
+    // Live Validation Functions
+    const validators = {
+        name: (value) => {
+            if (!value.trim()) return 'Name is required';
+            if (value.trim().length < 2) return 'Name must be at least 2 characters';
+            if (!/^[a-zA-Z\s]+$/.test(value)) return 'Name should only contain letters';
+            return '';
+        },
+        email: (value) => {
+            if (!value.trim()) return 'Email is required';
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(value)) return 'Please enter a valid email';
+            return '';
+        },
+        message: (value) => {
+            if (!value.trim()) return 'Message is required';
+            if (value.trim().length < 10) return 'Message must be at least 10 characters';
+            return '';
+        }
+    };
+
+    const validateField = (input) => {
+        const fieldName = input.name;
+        const value = input.value;
+        const container = input.parentElement;
+        const errorMessage = container.querySelector('.error-message');
+        const validationIcon = container.querySelector('.validation-icon');
+
+        const error = validators[fieldName](value);
+
+        // Remove existing classes
+        input.classList.remove('valid', 'invalid');
+        validationIcon.classList.remove('valid', 'invalid', 'show');
+        errorMessage.classList.remove('show');
+
+        if (error) {
+            // Invalid state
+            input.classList.add('invalid');
+            validationIcon.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+            validationIcon.classList.add('invalid', 'show');
+            errorMessage.textContent = error;
+            errorMessage.classList.add('show');
+            return false;
+        } else if (value.trim()) {
+            // Valid state (only if not empty)
+            input.classList.add('valid');
+            validationIcon.innerHTML = '<i class="fa-solid fa-check"></i>';
+            validationIcon.classList.add('valid', 'show');
+            return true;
+        }
+        return false;
+    };
+
+    // Add input event listeners for real-time validation
+    const formInputs = contactForm.querySelectorAll('input, textarea');
+    formInputs.forEach(input => {
+        // Validate on input (as user types)
+        input.addEventListener('input', () => {
+            // Only validate if field has been touched (has value or was focused)
+            if (input.value.trim() || input.classList.contains('touched')) {
+                validateField(input);
+            }
+        });
+
+        // Mark as touched on blur
+        input.addEventListener('blur', () => {
+            input.classList.add('touched');
+            validateField(input);
+        });
+
+        // Validate on focus (clear errors if any)
+        input.addEventListener('focus', () => {
+            const container = input.parentElement;
+            const errorMessage = container.querySelector('.error-message');
+            errorMessage.classList.remove('show');
+        });
+    });
+
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+
+        // Validate all fields before submission
+        let isValid = true;
+        formInputs.forEach(input => {
+            input.classList.add('touched');
+            if (!validateField(input)) {
+                isValid = false;
+            }
+        });
+
+        if (!isValid) {
+            // Shake the form to indicate error
+            contactForm.style.animation = 'shake 0.5s ease';
+            setTimeout(() => {
+                contactForm.style.animation = '';
+            }, 500);
+            return;
+        }
+
         const submitBtn = contactForm.querySelector('.submit-btn');
         const originalBtnText = submitBtn.innerHTML;
-        
+
         submitBtn.innerHTML = '<span>Sending...</span><i class="fa-solid fa-spinner fa-spin"></i>';
         submitBtn.style.opacity = '0.7';
         submitBtn.style.pointerEvents = 'none';
@@ -241,6 +338,17 @@ if (contactForm) {
                 submitBtn.style.background = '#28a745';
                 submitBtn.style.opacity = '1';
                 contactForm.reset();
+                
+                // Reset validation states
+                formInputs.forEach(input => {
+                    input.classList.remove('valid', 'invalid', 'touched');
+                    const container = input.parentElement;
+                    const errorMessage = container.querySelector('.error-message');
+                    const validationIcon = container.querySelector('.validation-icon');
+                    errorMessage.classList.remove('show');
+                    validationIcon.classList.remove('valid', 'invalid', 'show');
+                });
+
                 setTimeout(() => {
                     submitBtn.innerHTML = originalBtnText;
                     submitBtn.style.background = '';
@@ -263,6 +371,17 @@ if (contactForm) {
         }
     });
 }
+
+// Add shake animation keyframes
+const styleSheet = document.createElement('style');
+styleSheet.textContent = `
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+        20%, 40%, 60%, 80% { transform: translateX(5px); }
+    }
+`;
+document.head.appendChild(styleSheet);
 
 // Scroll Spy Logic
 const sections = document.querySelectorAll('section');

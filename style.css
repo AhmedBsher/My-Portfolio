@@ -1387,6 +1387,67 @@ header {
 }
 
 /* ============================================================
+   FORM VALIDATION STYLES
+   ============================================================ */
+.input-container {
+    position: relative;
+}
+
+.error-message {
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    font-size: 0.75em;
+    color: #ff6b6b;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.error-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.validation-icon {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 1.2em;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.validation-icon.show {
+    opacity: 1;
+}
+
+.validation-icon.valid {
+    color: #51cf66;
+}
+
+.validation-icon.invalid {
+    color: #ff6b6b;
+}
+
+.contact-form input.valid,
+.contact-form textarea.valid {
+    border-bottom-color: #51cf66;
+}
+
+.contact-form input.invalid,
+.contact-form textarea.invalid {
+    border-bottom-color: #ff6b6b;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+}
+
+/* ============================================================
    FOOTER
    ============================================================ */
 .footer {
