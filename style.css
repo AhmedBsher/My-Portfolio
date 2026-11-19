@@ -1395,9 +1395,9 @@ header {
 
 .error-message {
     position: absolute;
-    bottom: -20px;
+    bottom: -12.5px;
     left: 0;
-    font-size: 0.75em;
+    font-size: 0.55em;
     color: #ff6b6b;
     opacity: 0;
     transform: translateY(-5px);
